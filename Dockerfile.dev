@@ -2,7 +2,7 @@
 FROM node:16.13.2 AS build
 
 USER node
-WORKDIR /home/node/app
+WORKDIR /app
 
 # Copy dependency information and install all dependencies
 COPY --chown=node:node package.json package-lock.json ./
@@ -23,13 +23,13 @@ FROM node:16.13.2-slim
 USER node
 EXPOSE 3000
 
-WORKDIR /home/node/app
+WORKDIR /app
 
 # Copy dependency information and install production-only dependencies
 COPY --chown=node:node package.json package-lock.json ./
 RUN npm ci --production
 
 # Copy results from previous stage
-COPY --chown=node:node --from=build /home/node/app/dist ./dist
+COPY --chown=node:node --from=build /app/dist ./dist
 
 CMD ["node", "dist/server.js"]
