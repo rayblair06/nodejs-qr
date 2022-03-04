@@ -1,15 +1,16 @@
 # Start with fully-featured Node.js base image
 FROM node:16.13.2 AS build
 
+USER node
 WORKDIR /app
 
 # Copy dependency information and install all dependencies
-COPY package.json package-lock.json ./
+COPY --chown=node:node package.json package-lock.json ./
 
 RUN npm ci
 
 # Copy source code (and all other relevant files)
-COPY src ./src
+COPY --chown=node:node src ./src
 
 # Build code
 RUN npm run build
@@ -18,16 +19,17 @@ RUN npm run build
 # Run-time stage
 FROM node:16.13.2-slim
 
-# Expose port 3000
+# Set non-root user and expose port 3000
+USER node
 EXPOSE 3000
 
 WORKDIR /app
 
 # Copy dependency information and install production-only dependencies
-COPY package.json package-lock.json ./
+COPY --chown=node:node package.json package-lock.json ./
 RUN npm ci --production
 
 # Copy results from previous stage
-COPY --from=build /app/dist ./dist
+COPY --chown=node:node --from=build /app/dist ./dist
 
 CMD ["node", "dist/server.js"]
