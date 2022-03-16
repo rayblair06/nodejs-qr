@@ -18,7 +18,7 @@
     "url": "git+https://github.com/rayblair06/nodejs-qr.git"
   },
   "author": "Ray Blair",
-  "license": "MIT",
+  "license": "GPLv3",
   "bugs": {
     "url": "https://github.com/rayblair06/nodejs-qr/issues"
   },
