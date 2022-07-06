@@ -34,7 +34,7 @@
     "winston": "^3.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13",
+    "nodemon": "^2.0.19",
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.17.0",
     "@babel/eslint-parser": "^7.5.4",
