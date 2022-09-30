@@ -25,7 +25,7 @@
   "homepage": "https://github.com/rayblair06/nodejs-qr#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.3",
     "easyqrcodejs-nodejs": "^4.4.3",
     "express": "^4.17.3",
     "http-status-codes": "^2.2.0",
